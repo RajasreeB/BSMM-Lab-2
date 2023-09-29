@@ -14,17 +14,17 @@ Load packages and data:
 
 ```{r load-pkg-data}
 #| message: false
-install.packages("tidyverse")
-install.packages("gt")           # for making display tables
-install.packages("gtExtras")     # helper functions for beautiful tables
-install.packages("DataExplorer")
-install.packages("tidymodels")
-install.packages("gt")
-library(magrittr)     # the pipe
-library(tidyverse)    # for data wrangling + visualization
+#install.packages("tidyverse")
+#install.packages("gt")           # for making display tables
+#install.packages("gtExtras")     # helper functions for beautiful tables
+#install.packages("DataExplorer")
+#install.packages("tidymodels")
+#install.packages("gt")
 ```
 
 ```{r}
+library(magrittr)     # the pipe
+library(tidyverse)    # for data wrangling + visualization
 library(tidymodels)   # for modeling
 library(gt)           # for making display tables
 library(gtExtras)     # helper functions for beautiful tables
@@ -192,7 +192,9 @@ The artist with the tenth-most works in the Tate collection is Warhol, Andy.
 ```{r}
 total_works <- nrow(the_tate)
 artist_work_counts %<>% mutate(percentage=(title/total_works)*100)
+```
 
+```{r}
 View(artist_work_counts)
 
 # Create the table using gt
@@ -211,7 +213,7 @@ table <- artist_work_counts %>%
 print(table)
 ```
 
-The artist with the greatest number of works in the Tate collection represent \_\_\_% of the total number of works
+The artist with the greatest number of works in the Tate collection represent 56.92% of the total number of works
 
 ### Exercise 5
 
