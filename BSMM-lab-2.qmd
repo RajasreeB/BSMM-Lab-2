@@ -330,6 +330,33 @@ The corresponding price volatility was 34.70%.
 
 ### Exercise 9
 
-The period volatility was \_\_\_.\_%
+The period volatility was 48.77%
 
-### 
+```{r}
+# Install packages for reading the csv file
+
+# Load required libraries
+library(dplyr)
+library(readr)
+
+# Calculate period return and period volatility
+period_return <- prod(1 + summary_data$Annual_Return) - 1
+period_volatility <- sqrt(sum(summary_data$Annual_StdDev^2))
+
+# Create summary rows for period return and period volatility
+summary_rows <- tibble::tibble(
+  Year = as.character("Period"),  # Ensure "Year" is character type
+  Annual_Return = period_return,
+  Annual_StdDev = period_volatility
+)
+
+# Convert the "Year" column in summary_data to character
+summary_data <- summary_data |>
+  mutate(Year = as.character(Year))
+
+# Combine the summary rows with the summary_data
+summary_data <- bind_rows(summary_data, summary_rows)
+
+# Print the summary data
+print(summary_data)
+```
